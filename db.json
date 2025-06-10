@@ -1,0 +1,116 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Nike Air Max 270",
+      "brand": "Nike",
+      "price": 3500000,
+      "sizes": [
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "colors": [
+        "Black"
+      ],
+      "description": "Giày chạy bộ Nike Air Max 270 với thiết kế hiện đại, êm ái.",
+      "image": "https://images.unsplash.com/photo-1713649931645-acc95f0bc6c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c25lYWtlcnMlMjBOaWtlJTIwQWlyJTIwTWF4JTIwMjcwfGVufDB8fDB8fHww"
+    },
+    {
+      "id": "2",
+      "name": "Adidas Ultra 21",
+      "brand": "Adidas",
+      "price": 4200000,
+      "sizes": [
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "colors": [
+        "White",
+        "Black"
+      ],
+      "description": "Giày chạy Ultraboost 21 tăng độ đàn hồi, phù hợp cho mọi loại địa hình.",
+      "image": "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c25lYWtlcnMlMjBBZGlkYXMlMjBVbHRyYSUyMDIxfGVufDB8fDB8fHww"
+    },
+    {
+      "id": "3",
+      "name": "Puma RS-X",
+      "brand": "Puma",
+      "price": 2800000,
+      "sizes": [
+        38,
+        39,
+        40,
+        41
+      ],
+      "colors": [
+        "Red",
+        "Green",
+        "Blue"
+      ],
+      "description": "Giày thể thao Puma RS-X nổi bật với phong cách retro năng động.",
+      "image": "https://images.unsplash.com/photo-1612188852779-079df9e6dcc7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c25lYWtlcnMlMjBQdW1hJTIwUlMlMjBYfGVufDB8fDB8fHww"
+    },
+    {
+      "id": "4",
+      "name": "New Balance 574",
+      "brand": "New Balance",
+      "price": 2600000,
+      "sizes": [
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "colors": [
+        "Blue",
+        "Gray",
+        "Black"
+      ],
+      "description": "Giày New Balance 574 cổ điển, thoải mái và bền bỉ.",
+      "image": "https://images.unsplash.com/photo-1621315271772-28b1f3a5df87?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c25lYWtlcnMlMjBOZXclMjBCYWxhbmNlfGVufDB8fDB8fHww"
+    }
+  ],
+  "produtcsCart": [
+    {
+      "id": "17b1",
+      "productId": "3",
+      "name": "Puma RS-X",
+      "image": "https://images.unsplash.com/photo-1612188852779-079df9e6dcc7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c25lYWtlcnMlMjBQdW1hJTIwUlMlMjBYfGVufDB8fDB8fHww",
+      "price": 2800000,
+      "size": 39,
+      "color": "Blue",
+      "quantity": 1
+    },
+    {
+      "id": "813f",
+      "productId": "1",
+      "name": "Nike Air Max 270",
+      "image": "https://images.unsplash.com/photo-1713649931645-acc95f0bc6c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c25lYWtlcnMlMjBOaWtlJTIwQWlyJTIwTWF4JTIwMjcwfGVufDB8fDB8fHww",
+      "price": 3500000,
+      "size": 40,
+      "color": "Black",
+      "quantity": 1
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "abc123",
+      "password": "abc123",
+      "email": "abc123@gmail.com"
+    },
+    {
+      "id": "b2c7",
+      "username": "abc1234",
+      "email": "abc1234@gmail.com",
+      "password": "abc1234"
+    }
+  ]
+}
