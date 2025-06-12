@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { ProductContext } from '../screens/ProductContext'; // Sửa đường dẫn nếu cần
 import {
   View,
   FlatList,
@@ -9,11 +10,11 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import { getProducts } from '../API/ApiServer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ShoppingCart from './ShoppingCart'; // Thêm dòng này ở đầu file
 import Account from './Account';
+import ProductsMana from './ProductsMana';
 
 const { width } = Dimensions.get('window');
 const CARD_WIDTH = width * 0.46;
@@ -33,16 +34,8 @@ const bannerImages = [
 ];
 
 const MainProductScreen = ({ navigation }) => {
-  const [products, setProducts] = useState([]);
+  const { products, fetchProducts } = useContext(ProductContext);
   const [bannerIndex, setBannerIndex] = useState(0);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getProducts();
-      setProducts(data);
-    };
-    fetchData();
-  }, []);
 
   // Tự động chuyển banner
   useEffect(() => {
@@ -155,7 +148,7 @@ const Home = () => {
       />
       <Tab.Screen
         name="Cài đặt"
-        component={SettingsScreen}
+        component={ProductsMana} // Đổi từ SettingsScreen sang ProductsMana
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="settings-outline" color={color} size={size} />

@@ -17,7 +17,7 @@ const Splash = ({ navigation }) => {
         style={styles.logo}
         resizeMode="contain"
       />
-      <Text style={styles.title}>Chào mừng bạn đến với{"\n"}<Text style={styles.brand}>SHOP GIÀY THỂ THAO CHÍNH H</Text>!</Text>
+      <Text style={styles.title}>Chào mừng bạn đến với{"\n"}<Text style={styles.brand}>SHOP GIÀY THỂ THAO </Text>!</Text>
       <ActivityIndicator size="large" color="#fff" style={{ marginTop: 32 }} />
     </View>
   );

@@ -1,4 +1,4 @@
-    import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -12,27 +12,15 @@ import {
   ScrollView,
 } from 'react-native';
 
-const sampleOrder = [
-  {
-    id: '1',
-    name: 'Nike Air Max 270',
-    price: 3200000,
-    quantity: 1,
-  },
-  {
-    id: '2',
-    name: 'Adidas Ultraboost',
-    price: 3500000,
-    quantity: 2,
-  },
-];
-
-const Pay = () => {
+const Pay = ({ route, navigation }) => {
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
 
-  const totalPrice = sampleOrder.reduce(
+  // Lấy đơn hàng từ params, nếu không có thì là mảng rỗng
+  const order = route?.params?.order || [];
+
+  const totalPrice = order.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
@@ -46,14 +34,24 @@ const Pay = () => {
     Alert.alert(
       'Xác nhận',
       `Cảm ơn ${fullName}!\nĐơn hàng của bạn đã được tiếp nhận.\nTổng tiền: ${totalPrice.toLocaleString('vi-VN')}₫`,
-      [{ text: 'OK' }]
+      [
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('HomeTabs'),
+        },
+      ]
     );
     // Xử lý gửi đơn hàng đến backend tại đây
   };
 
   const renderItem = ({ item }) => (
     <View style={styles.orderItem}>
-      <Text style={styles.itemName} numberOfLines={1}>{item.name}</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.itemName} numberOfLines={1}>{item.name}</Text>
+        <Text style={styles.itemDetail}>
+          Màu: {item.color} | Size: {item.size}
+        </Text>
+      </View>
       <Text style={styles.itemQty}>x{item.quantity}</Text>
       <Text style={styles.itemPrice}>{(item.price * item.quantity).toLocaleString('vi-VN')}₫</Text>
     </View>
@@ -91,10 +89,9 @@ const Pay = () => {
         />
 
         <Text style={styles.header}>Đơn hàng của bạn</Text>
-
         <FlatList
-          data={sampleOrder}
-          keyExtractor={(item) => item.id}
+          data={order}
+          keyExtractor={(item) => item.id?.toString()}
           renderItem={renderItem}
           scrollEnabled={false}
           style={{ marginBottom: 20 }}
@@ -147,6 +144,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     color: '#444',
+  },
+  itemDetail: {
+    fontSize: 13,
+    color: '#666',
+    marginTop: 2,
+    marginBottom: 2,
   },
   itemQty: {
     width: 30,

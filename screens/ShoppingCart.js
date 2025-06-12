@@ -12,7 +12,7 @@ import {
 import { useFocusEffect } from '@react-navigation/native'; // Thêm dòng này
 import { getCart, updateCartItem, deleteCartItem } from '../API/ApiServer';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ navigation }) => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -148,7 +148,9 @@ const ShoppingCart = () => {
             </Text>
             <TouchableOpacity
               style={styles.checkoutButton}
-              onPress={() => Alert.alert('Thanh toán', 'Chức năng thanh toán chưa được cài đặt')}
+              onPress={() =>
+                navigation.navigate('Pay', { order: cartItems })
+              }
             >
               <Text style={styles.checkoutText}>Thanh toán</Text>
             </TouchableOpacity>

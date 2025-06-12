@@ -31,6 +31,42 @@ export const getProductById = async (id) => {
   }
 };
 
+// Thêm sản phẩm mới
+export const addProduct = async (product) => {
+  try {
+    const res = await axios.post(apiUrl, product);
+    return res.data;
+  } catch (error) {
+    console.error('Lỗi khi thêm sản phẩm:', error.message);
+    Alert.alert('Lỗi', 'Không thể thêm sản phẩm');
+    return null;
+  }
+};
+
+// Sửa sản phẩm
+export const updateProduct = async (id, updatedProduct) => {
+  try {
+    const res = await axios.put(`${apiUrl}/${id}`, updatedProduct);
+    return res.data;
+  } catch (error) {
+    console.error('Lỗi khi sửa sản phẩm:', error.message);
+    Alert.alert('Lỗi', 'Không thể sửa sản phẩm');
+    return null;
+  }
+};
+
+// Xoá sản phẩm
+export const deleteProduct = async (id) => {
+  try {
+    await axios.delete(`${apiUrl}/${id}`);
+    return true;
+  } catch (error) {
+    console.error('Lỗi khi xoá sản phẩm:', error.message);
+    Alert.alert('Lỗi', 'Không thể xoá sản phẩm');
+    return false;
+  }
+};
+
 // Thêm sản phẩm vào giỏ hàng
 export const addToCart = async (cartItem) => {
   try {
@@ -109,3 +145,4 @@ export const loginUser = async (loginData) => {
     return null;
   }
 };
+
