@@ -9,18 +9,16 @@ import {
   ActivityIndicator,
   Image,
 } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native'; // Thêm dòng này
+import { useFocusEffect } from '@react-navigation/native';
 import { getCart, updateCartItem, deleteCartItem } from '../API/ApiServer';
 
 const ShoppingCart = ({ navigation }) => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Sử dụng useFocusEffect để giữ trạng thái khi quay lại màn hình
   useFocusEffect(
     useCallback(() => {
       fetchCart();
-      // Không reset state khi unmount
     }, [])
   );
 
@@ -65,7 +63,6 @@ const ShoppingCart = ({ navigation }) => {
           Alert.alert('Lỗi', 'Không thể giảm số lượng');
         }
       } else {
-        // Không cho giảm về 0, chỉ cảnh báo hoặc không làm gì
         Alert.alert('Thông báo', 'Số lượng tối thiểu là 1');
       }
     }
@@ -102,9 +99,7 @@ const ShoppingCart = ({ navigation }) => {
     <View style={styles.itemContainer}>
       <Image source={{ uri: item.image }} style={styles.image} />
       <View style={styles.info}>
-        <Text style={styles.name} numberOfLines={2} ellipsizeMode="tail">
-          {item.name}
-        </Text>
+        <Text style={styles.name} numberOfLines={2}>{item.name}</Text>
         <Text style={styles.detail}>Màu: {item.color} | Size: {item.size}</Text>
         <Text style={styles.price}>{item.price.toLocaleString('vi-VN')}₫</Text>
         <View style={styles.quantityContainer}>
@@ -169,8 +164,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: '#ccc',
     alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+    borderRadius: 10,
+    marginHorizontal: 8,
+    marginVertical: 6,
+    elevation: 2,
   },
-  image: { width: 80, height: 80, borderRadius: 10, backgroundColor: '#eee' },
+  image: { width: 70, height: 70, borderRadius: 10, backgroundColor: '#eee' },
   info: { flex: 1, marginLeft: 12 },
   name: { fontSize: 16, fontWeight: '600', color: '#333' },
   detail: { fontSize: 13, color: '#555', marginVertical: 2 },
@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 4,
   },
   qtyButton: {
     backgroundColor: '#1e90ff',

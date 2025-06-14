@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
+  StatusBar,
+  Platform
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -51,7 +53,7 @@ const MainProductScreen = ({ navigation }) => {
         source={{
           uri: item.image && item.image.trim() !== ''
             ? item.image
-            : 'https://reactnative.dev/img/tiny_logo.png'
+            : 'https://cms-assets.tutsplus.com/cdn-cgi/image/width=360/uploads/users/34/posts/29003/preview_image/react.js.png'
         }}
         style={styles.image}
       />
@@ -88,13 +90,21 @@ const MainProductScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Giày Thể Thao Chính Hãng</Text>
+      <StatusBar barStyle="dark-content" backgroundColor="#f5f7fa" />
+      <View
+        style={{
+          paddingLeft: 16,
+          backgroundColor: '#f5f7fa',
+          paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        }}
+      >
+        <Text style={styles.header}>Giày Thể Thao Chính Hãng</Text>
+      </View>
       <Image
         source={{ uri: bannerImages[bannerIndex] }}
         style={styles.banner}
         resizeMode="cover"
       />
-      
       <FlatList
         data={products}
         keyExtractor={item => item.id.toString()}
@@ -174,7 +184,8 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#222',
     marginBottom: 10,
-    paddingLeft: 16,
+    // paddingLeft: 16, // Đã chuyển vào View bọc bên ngoài
+    // Không cần paddingTop ở đây
   },
   card: {
     width: CARD_WIDTH,

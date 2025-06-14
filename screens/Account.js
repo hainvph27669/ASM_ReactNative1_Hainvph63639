@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const API_URL = 'http://192.168.1.148:3000/users';
+const API_URL = 'http://192.168.137.150:3000/users';
 
 const Account = ({ navigation }) => {
   const [user, setUser] = useState(null);

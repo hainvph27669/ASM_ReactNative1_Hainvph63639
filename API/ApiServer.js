@@ -3,9 +3,9 @@ import axios from 'axios';
 import { Alert } from 'react-native';
 
 
-const apiUrl = 'http://192.168.1.148:3000/products';
-const cartApiUrl = 'http://192.168.1.148:3000/produtcsCart';
-const authApiUrl = 'http://192.168.1.148:3000/users';
+const apiUrl = 'http://192.168.137.150:3000/products';
+const cartApiUrl = 'http://192.168.137.150:3000/produtcsCart';
+const authApiUrl = 'http://192.168.137.150:3000/users';
 
 // Hàm lấy danh sách sản phẩm
 export const getProducts = async () => {

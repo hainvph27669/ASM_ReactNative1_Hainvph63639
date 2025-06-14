@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, FlatList, Button, Alert, Modal, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, FlatList, Button, Alert, Modal, TextInput, ScrollView, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import { ProductContext } from '../screens/ProductContext';
 import { getProducts, addProduct, updateProduct, deleteProduct } from '../API/ApiServer';
 
@@ -82,27 +82,42 @@ const ProductsMana = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
-      <Text style={styles.name}>{item.name}</Text>
-      <Text>Giá: {Number(item.price).toLocaleString('vi-VN')}₫</Text>
-      <Text>Hãng: {item.brand}</Text>
-      <Text>Size: {Array.isArray(item.sizes) ? item.sizes.join(', ') : ''}</Text>
-      <Text>Màu: {Array.isArray(item.colors) ? item.colors.join(', ') : ''}</Text>
-      <View style={styles.row}>
-        <Button title="Sửa" onPress={() => handleEdit(item)} />
-        <Button title="Xoá" color="red" onPress={() => handleDelete(item.id)} />
+      <Image
+        source={
+          item.image
+            ? { uri: item.image }
+            : { uri: 'https://cms-assets.tutsplus.com/cdn-cgi/image/width=360/uploads/users/34/posts/29003/preview_image/react.js.png' }
+        }
+        style={styles.productImage}
+        resizeMode="cover"
+      />
+      <View style={{ flex: 1, marginLeft: 12 }}>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text>Giá: {Number(item.price).toLocaleString('vi-VN')}₫</Text>
+        <Text>Hãng: {item.brand}</Text>
+        <Text>Size: {Array.isArray(item.sizes) ? item.sizes.join(', ') : ''}</Text>
+        <Text>Màu: {Array.isArray(item.colors) ? item.colors.join(', ') : ''}</Text>
+        <View style={styles.row}>
+          <Button title="Sửa" onPress={() => handleEdit(item)} />
+          <Button title="Xoá" color="red" onPress={() => handleDelete(item.id)} />
+        </View>
       </View>
     </View>
   );
 
   return (
-    <View style={{ flex: 1, padding: 16 }}>
-      <Button title="Thêm sản phẩm" onPress={handleAdd} />
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f7fa' }}>
       <FlatList
         data={products}
         keyExtractor={item => item.id?.toString()}
         renderItem={renderItem}
-        contentContainerStyle={{ paddingBottom: 40 }}
+        contentContainerStyle={{ padding: 16, paddingBottom: 80 }}
       />
+
+      {/* Nút thêm sản phẩm nổi */}
+      <TouchableOpacity style={styles.fab} onPress={handleAdd}>
+        <Text style={styles.fabText}>+</Text>
+      </TouchableOpacity>
 
       {/* Modal Thêm/Sửa */}
       <Modal
@@ -160,17 +175,19 @@ const ProductsMana = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   item: {
+    flexDirection: 'row', // Thêm dòng này để ảnh và info nằm ngang
     backgroundColor: '#fff',
     marginBottom: 12,
     padding: 12,
     borderRadius: 8,
     elevation: 2,
+    alignItems: 'center', // Thêm dòng này cho cân giữa ảnh và info
   },
   name: {
     fontWeight: 'bold',
@@ -206,6 +223,34 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
+  },
+  fab: {
+    position: 'absolute',
+    right: 24,
+    bottom: 32,
+    backgroundColor: '#1e90ff',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+  },
+  fabText: {
+    color: '#fff',
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginTop: -2,
+  },
+  productImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+    backgroundColor: '#eee',
   },
 });
 

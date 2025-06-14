@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 import { addToCart } from '../API/ApiServer'; // Thêm dòng này ở đầu file
 
-const apiUrl = 'http://192.168.1.148:3000/products'
+// const apiUrl = 'http://192.168.137.150:3000/products'
 
 const { width } = Dimensions.get('window');
 
@@ -30,7 +30,7 @@ const ProductDetails = ({ route, navigation }) => {
     // hàm lấy data chi tiết sản phẩm
     const fetchProductDetail = async () => {
       try {
-        const res = await axios.get(`http://192.168.1.148:3000/products/${productId}`); 
+        const res = await axios.get(`http://192.168.137.150:3000/products/${productId}`); 
         setProduct(res.data);
       } catch (error) {
         Alert.alert('Lỗi', 'Không thể lấy thông tin sản phẩm');
